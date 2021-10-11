@@ -7,7 +7,7 @@ import {
   Container,
   Box,
   Text,
-  Grid,
+  SimpleGrid,
   GridItem,
   Wrap,
   WrapItem,
@@ -91,7 +91,7 @@ export default function Home({ items }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid gap={6} templateColumns="repeat(4, 1fr)">
+      <SimpleGrid spacing={6} columns={3}>
         {items.map((item) => {
           let swapText = `${item.swaps.length}/${item.supply}`;
           if (item.swaps.length > 0) {
@@ -128,7 +128,7 @@ export default function Home({ items }) {
             </GridItem>
           );
         })}
-      </Grid>
+      </SimpleGrid>
     </Container>
   );
 }
