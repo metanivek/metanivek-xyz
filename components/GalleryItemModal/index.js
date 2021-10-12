@@ -20,7 +20,7 @@ export default function GalleryItemModal({ item, isOpen, onOpen, onClose }) {
     <Modal onClose={onClose} size={size} isOpen={isOpen}>
       <ModalOverlay />
       <ModalContent rounded="0px">
-        {/* <ModalHeader fontWeight="medium">{item.title} </ModalHeader> */}
+        <ModalHeader></ModalHeader>
         <ModalCloseButton />
         <ModalBody
           style={{ position: "relative" }}
