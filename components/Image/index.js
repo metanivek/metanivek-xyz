@@ -11,19 +11,24 @@ function imageUri(item) {
   } else {
     uri = thumb;
   }
-  return uri.replace("ipfs://", "https://cloudflare-ipfs.com/ipfs/");
+  return uri.replace("ipfs://", "https://cf-ipfs.com/ipfs/");
+}
+
+function customLoader({ src, width, quality }) {
+  return src;
 }
 
 export default function MyImage({ item, objectFit }) {
   return (
     <Image
       src={imageUri(item)}
-      align="top"
+      align="center"
       objectPosition="center"
       objectFit={objectFit || "contain"}
       layout="fill"
       title={item.title}
       alt={item.title}
+      loader={customLoader}
     />
   );
 }
