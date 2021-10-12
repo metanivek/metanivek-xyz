@@ -809,7 +809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/system@npm:1.7.3":
+"@chakra-ui/system@npm:1.7.3, @chakra-ui/system@npm:^1.7.3":
   version: 1.7.3
   resolution: "@chakra-ui/system@npm:1.7.3"
   dependencies:
@@ -892,7 +892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/theme@npm:1.10.3":
+"@chakra-ui/theme@npm:1.10.3, @chakra-ui/theme@npm:^1.10.3":
   version: 1.10.3
   resolution: "@chakra-ui/theme@npm:1.10.3"
   dependencies:
@@ -1061,7 +1061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.4.1":
+"@emotion/react@npm:^11":
   version: 11.4.1
   resolution: "@emotion/react@npm:11.4.1"
   dependencies:
@@ -1104,7 +1104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:^11.3.0":
+"@emotion/styled@npm:^11":
   version: 11.3.0
   resolution: "@emotion/styled@npm:11.3.0"
   dependencies:
@@ -4396,8 +4396,10 @@ fsevents@~2.3.1:
     "@apollo/client": ^3.4.16
     "@chakra-ui/icons": ^1.0.15
     "@chakra-ui/react": ^1.6.9
-    "@emotion/react": ^11.4.1
-    "@emotion/styled": ^11.3.0
+    "@chakra-ui/system": ^1.7.3
+    "@chakra-ui/theme": ^1.10.3
+    "@emotion/react": ^11
+    "@emotion/styled": ^11
     eslint: 7.32.0
     eslint-config-next: 11.1.2
     framer-motion: ^4.1.17
