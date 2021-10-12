@@ -64,7 +64,7 @@ export default function Home({ items }) {
           content="Art exploring subtle form and abstraction"
         />
       </Head>
-      <SimpleGrid spacing={6} columns={[1, 1, 3]}>
+      <SimpleGrid spacing={6} columns={[1, 1, 3, 4]}>
         {items.map((item) => {
           return <GalleryItem key={item.id} item={item} />;
         })}
