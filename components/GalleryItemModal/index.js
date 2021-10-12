@@ -8,6 +8,9 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Badge,
+  Spacer,
+  Text,
 } from "@chakra-ui/react";
 import Image from "../Image";
 
@@ -17,14 +20,24 @@ export default function GalleryItemModal({ item, isOpen, onOpen, onClose }) {
     <Modal onClose={onClose} size={size} isOpen={isOpen}>
       <ModalOverlay />
       <ModalContent rounded="0px">
-        <ModalHeader>{item.title}</ModalHeader>
+        {/* <ModalHeader fontWeight="medium">{item.title} </ModalHeader> */}
         <ModalCloseButton />
-        <ModalBody style={{ position: "relative" }} mx={16} mt={8} mb={16}>
+        <ModalBody
+          style={{ position: "relative" }}
+          mx={[4, 4, 16]}
+          mt={[2, 2, 4]}
+          mb={[2, 2, 16]}
+        >
           <Image item={item} objectFit="contain" />
         </ModalBody>
-        {/* <ModalFooter> */}
-        {/*   <Button onClick={onClose}>Close</Button> */}
-        {/* </ModalFooter> */}
+        <ModalFooter>
+          <Spacer />
+          <Text>{item.title}</Text>
+          <Badge ml={2} variant="outline">
+            {item.swaps.length}/{item.supply}
+          </Badge>
+          <Spacer />
+        </ModalFooter>
       </ModalContent>
     </Modal>
   );

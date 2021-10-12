@@ -19,6 +19,7 @@ export default function MyImage({ item, objectFit }) {
     <Image
       src={imageUri(item)}
       align="top"
+      objectPosition="center"
       objectFit={objectFit || "contain"}
       layout="fill"
       title={item.title}
