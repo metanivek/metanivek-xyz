@@ -28,6 +28,7 @@ export default function MyImage({ item, objectFit }) {
       layout="fill"
       title={item.title}
       alt={item.title}
+      unoptimized={true}
       loader={customLoader}
     />
   );

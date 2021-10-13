@@ -9,6 +9,8 @@ import {
   Center,
   Button,
   useDisclosure,
+  useBreakpointValue,
+  useColorMode,
 } from "@chakra-ui/react";
 import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
@@ -16,9 +18,18 @@ import CollectButton from "../CollectButton";
 
 export default function GalleryItem({ item }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const showModal = () => onOpen();
+  const shouldShowModal = useBreakpointValue({ base: false, md: true });
+  const { colorMode, toggleColorMode } = useColorMode();
+  const showModal = () => {
+    if (shouldShowModal) {
+      onOpen();
+    }
+  };
   return (
-    <GridItem padding={[2, 2, 4, 4]} boxShadow="base">
+    <GridItem
+      padding={[3, 3, 4, 4]}
+      boxShadow={colorMode === "light" ? "base" : "dark.base"}
+    >
       <AspectRatio
         ratio={1}
         marginBottom={4}
