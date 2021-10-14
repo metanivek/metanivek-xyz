@@ -40,6 +40,12 @@ export async function getStaticProps() {
         ) {
           price
           creator_id
+          amount
+          trades_aggregate {
+            aggregate {
+              count
+            }
+          }
         }
         token_holders {
           holder_id
@@ -72,6 +78,12 @@ function normalizeData(data) {
     return {
       ...i,
       tags: i.token_tags.map((t) => t.tag.tag),
+      swaps: i.swaps.map((s) => {
+        return {
+          ...s,
+          remaining: s.amount - s.trades_aggregate.aggregate.count,
+        };
+      }),
     };
   });
 }
@@ -93,11 +105,7 @@ export default function Home({ items }) {
   return (
     <VStack>
       <Head>
-        <title>metanivek hic et nunc art</title>
-        <meta
-          name="description"
-          content="Art exploring subtle form and abstraction"
-        />
+        <title>metanivek hic et nunc gallery</title>
       </Head>
       <Header />
       <Container maxWidth="100vw" padding={[4, 4, 4, 8]}>

@@ -14,6 +14,7 @@ import Image from "../Image";
 
 export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
+  const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
   return (
     <Modal onClose={onClose} size={size} isOpen={isOpen}>
       <ModalOverlay />
@@ -32,7 +33,7 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
           <Spacer />
           <Text>{item.title}</Text>
           <Badge ml={2} variant="outline">
-            {item.swaps.length}/{item.supply}
+            {totalRemaining}/{item.supply}
           </Badge>
           <Spacer />
         </ModalFooter>
