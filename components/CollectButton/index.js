@@ -40,6 +40,7 @@ export default function CollectButton({ item }) {
     tag = "Sold Out";
     tagColor = "gray";
   }
+  const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
   const collectTxt = soldOut ? (
     "Unavailable"
   ) : (
@@ -59,6 +60,7 @@ export default function CollectButton({ item }) {
           colorScheme="gray"
           variant="outline"
           disabled={soldOut}
+          title={`${totalRemaining}/${item.supply} editions are available`}
         >
           {collectTxt}
         </MenuButton>
