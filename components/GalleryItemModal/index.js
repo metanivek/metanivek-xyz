@@ -11,6 +11,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Image from "../Image";
+import Html from "../Html";
+
+function isHtmlObjkt(item) {
+  return item.mime === "application/x-directory";
+}
 
 export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
@@ -27,7 +32,10 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
           mt={[2, 2, 4]}
           mb={[2, 2, 16]}
         >
-          <Image item={item} objectFit="contain" />
+          {isHtmlObjkt(item) && <Html item={item} />}
+          {!isHtmlObjkt(item) && (
+            <Image item={item} objectFit="contain" highQuality={true} />
+          )}
         </ModalBody>
         <ModalFooter>
           <Spacer />

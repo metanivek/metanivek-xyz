@@ -1,12 +1,11 @@
 import Image from "next/image";
-// import { Image } from "@chakra-ui/react";
 
-function imageUri(item) {
+function imageUri(item, highQuality) {
   let display = item.display_uri;
   let artifact = item.artifact_uri;
 
   let uri = artifact;
-  if (!!display) {
+  if (!!display && !highQuality) {
     uri = display;
   }
   // fast public gateway: "https://cf-ipfs.com/ipfs/"
@@ -18,11 +17,15 @@ function customLoader({ src }) {
   return src;
 }
 
-export default function MyImage({ item, objectFit }) {
+function isImage(item) {
+  return item.mime.startsWith("image/");
+}
+
+export default function MyImage({ item, objectFit, highQuality }) {
+  highQuality = (isImage(item) && highQuality) || false;
   return (
     <Image
-      src={imageUri(item)}
-      /* align="center" */
+      src={imageUri(item, highQuality)}
       objectPosition="center"
       objectFit={objectFit || "contain"}
       layout="fill"

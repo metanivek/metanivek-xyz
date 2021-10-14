@@ -23,6 +23,7 @@ export async function getStaticProps() {
         order_by: { id: desc }
       ) {
         id
+        mime
         creator_id
         title
         artifact_uri
