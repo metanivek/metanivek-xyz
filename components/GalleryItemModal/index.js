@@ -1,5 +1,4 @@
 import {
-  Button,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -7,14 +6,13 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Badge,
   Spacer,
   Text,
 } from "@chakra-ui/react";
 import Image from "../Image";
 
-export default function GalleryItemModal({ item, isOpen, onOpen, onClose }) {
+export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
   return (
     <Modal onClose={onClose} size={size} isOpen={isOpen}>
