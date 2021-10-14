@@ -50,7 +50,7 @@ export default function CollectButton({ item }) {
   );
   return (
     <Flex direction="column">
-      <Menu>
+      <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
         <MenuButton
           as={Button}
           fontSize="md"
