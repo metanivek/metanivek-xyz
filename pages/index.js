@@ -23,6 +23,7 @@ export async function getStaticProps() {
         order_by: { id: desc }
       ) {
         id
+        creator_id
         title
         artifact_uri
         thumbnail_uri
@@ -33,8 +34,9 @@ export async function getStaticProps() {
           order_by: { price: asc }
         ) {
           price
+          creator_id
         }
-        token_holders(where: { holder_id: { _in: $addresses } }) {
+        token_holders {
           holder_id
           quantity
         }

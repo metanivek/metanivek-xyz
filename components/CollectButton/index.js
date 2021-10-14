@@ -5,6 +5,8 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Flex,
+  Badge,
 } from "@chakra-ui/react";
 
 function externalItemUrl(item, destination) {
@@ -28,8 +30,18 @@ export default function CollectButton({ item }) {
   const collect = (dest) => () =>
     window.open(externalItemUrl(item, dest), "_blank");
   const soldOut = item.swaps.length <= 0;
+  const isSecondary = !soldOut && item.swaps[0].creator_id != item.creator_id;
+  let tag = "Primary";
+  let tagColor = "green";
+  if (isSecondary) {
+    tag = "Secondary";
+    tagColor = "blue";
+  } else if (soldOut) {
+    tag = "Sold Out";
+    tagColor = "gray";
+  }
   const collectTxt = soldOut ? (
-    "Sold Out"
+    "Unavailable"
   ) : (
     <>
       Collect for {item.swaps[0].price / 1000000}
@@ -37,26 +49,31 @@ export default function CollectButton({ item }) {
     </>
   );
   return (
-    <Menu>
-      <MenuButton
-        as={Button}
-        fontSize="md"
-        rounded="0px"
-        fontWeight="normal"
-        colorScheme="gray"
-        variant="outline"
-        disabled={soldOut}
-      >
-        {collectTxt}
-      </MenuButton>
-      <MenuList rounded="0px">
-        <MenuItem size="xs" onClick={collect("hen")}>
-          hic et nunc
-        </MenuItem>
-        <MenuItem size="xs" onClick={collect("objkt")}>
-          objkt.com
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <Flex direction="column">
+      <Menu>
+        <MenuButton
+          as={Button}
+          fontSize="md"
+          rounded="0px"
+          fontWeight="normal"
+          colorScheme="gray"
+          variant="outline"
+          disabled={soldOut}
+        >
+          {collectTxt}
+        </MenuButton>
+        <MenuList rounded="0px">
+          <MenuItem size="xs" onClick={collect("hen")}>
+            hic et nunc
+          </MenuItem>
+          <MenuItem size="xs" onClick={collect("objkt")}>
+            objkt.com
+          </MenuItem>
+        </MenuList>
+      </Menu>
+      <Badge textAlign="center" colorScheme={tagColor}>
+        {tag}
+      </Badge>
+    </Flex>
   );
 }
