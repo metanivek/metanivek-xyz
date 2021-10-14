@@ -10,10 +10,10 @@ export async function getStaticProps() {
     cache: new InMemoryCache(),
   });
   const query = gql`
-    query ObjktsWithPrice($addresses: [String!]) {
+    query ObjktsWithPrice($addresses: [String!], $exclude_ids: [bigint!]) {
       hic_et_nunc_token(
         where: {
-          mime: { _eq: "image/png" }
+          id: { _nin: $exclude_ids }
           creator_id: { _in: $addresses }
           token_holders: {
             quantity: { _gt: "0" }
@@ -26,9 +26,14 @@ export async function getStaticProps() {
         creator_id
         title
         artifact_uri
-        thumbnail_uri
+        display_uri
         description
         supply
+        token_tags {
+          tag {
+            tag
+          }
+        }
         swaps(
           where: { status: { _eq: "0" }, contract_version: { _neq: "1" } }
           order_by: { price: asc }
@@ -44,7 +49,12 @@ export async function getStaticProps() {
     }
   `;
   const variables = {
-    addresses: ["tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip"],
+    addresses: [
+      "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip",
+      "tz1aiCXusXLywm3ewXb4Y8X8bsDqWQYmzvLa",
+      "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe",
+    ],
+    exclude_ids: [216709, 216508],
   };
   const { data } = await client.query({
     query,
@@ -52,9 +62,18 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      items: data["hic_et_nunc_token"],
+      items: normalizeData(data["hic_et_nunc_token"]),
     },
   };
+}
+
+function normalizeData(data) {
+  return data.map((i) => {
+    return {
+      ...i,
+      tags: i.token_tags.map((t) => t.tag.tag),
+    };
+  });
 }
 
 function Header() {

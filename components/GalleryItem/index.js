@@ -1,13 +1,9 @@
-import { useState } from "react";
 import {
   GridItem,
   AspectRatio,
   VStack,
-  StackDivider,
-  Text,
+  Box,
   Flex,
-  Center,
-  Button,
   useDisclosure,
   useBreakpointValue,
   useColorMode,
@@ -16,10 +12,20 @@ import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
 import CollectButton from "../CollectButton";
 
+function creatorIdToName(creatorId) {
+  if (creatorId === "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip") {
+    return "metanivek";
+  } else if (creatorId === "tz1aiCXusXLywm3ewXb4Y8X8bsDqWQYmzvLa") {
+    return "metanivek.words";
+  } else if (creatorId === "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe") {
+    return "metanivek.x";
+  }
+}
+
 export default function GalleryItem({ item }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const shouldShowModal = useBreakpointValue({ base: false, md: true });
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const showModal = () => {
     if (shouldShowModal) {
       onOpen();
@@ -39,9 +45,14 @@ export default function GalleryItem({ item }) {
         <Image item={item} objectFit="cover" />
       </AspectRatio>
       <VStack spacing={2} align="left">
-        <Text fontSize="lg" noOfLines={[2, 1]} mb={1}>
-          {item.title}
-        </Text>
+        <VStack align="left" mb={1} spacing={0}>
+          <Box fontSize="lg" noOfLines={1}>
+            {item.title}
+          </Box>
+          <Box fontSize="xs" color="gray.500">
+            {creatorIdToName(item.creator_id)}
+          </Box>
+        </VStack>
         <Flex direction="column">
           <CollectButton item={item} />
           <GalleryItemModal
