@@ -13,6 +13,7 @@ import {
 import Image from "../Image";
 import Html from "../Html";
 import Pdf from "../Pdf";
+import Video from "../Video";
 
 function isHtmlObjkt(item) {
   return item.mime === "application/x-directory";
@@ -20,12 +21,17 @@ function isHtmlObjkt(item) {
 function isPdf(item) {
   return item.mime === "application/pdf";
 }
+function isVideo(item) {
+  return item.mime.startsWith("video/");
+}
 
 function renderFullPreview(item) {
   if (isHtmlObjkt(item)) {
     return <Html item={item} />;
   } else if (isPdf(item)) {
     return <Pdf item={item} />;
+  } else if (isVideo(item)) {
+    return <Video item={item} />;
   } else {
     return <Image item={item} objectFit="contain" highQuality={true} />;
   }
@@ -47,7 +53,11 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         <ModalHeader></ModalHeader>
         <ModalCloseButton />
         <ModalBody
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+          }}
           p={0}
           mx={[4, 4, 12]}
           mt={[2, 2, 4]}
