@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Image from "../Image";
 import Html from "../Html";
-// import Pdf from "../Pdf";
+import Pdf from "../Pdf";
 
 function isHtmlObjkt(item) {
   return item.mime === "application/x-directory";
@@ -24,8 +24,8 @@ function isPdf(item) {
 function renderFullPreview(item) {
   if (isHtmlObjkt(item)) {
     return <Html item={item} />;
-    // } else if (isPdf(item)) {
-    //   return <Pdf item={item} />;
+  } else if (isPdf(item)) {
+    return <Pdf item={item} />;
   } else {
     return <Image item={item} objectFit="contain" highQuality={true} />;
   }

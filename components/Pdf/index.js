@@ -15,6 +15,7 @@ export default function Pdf({ item }) {
     setNumPages(nextNumPages);
   }
   return (
+    // TODO: handle pagination
     <Box align="center">
       <Document
         options={{
