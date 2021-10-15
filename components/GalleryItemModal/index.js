@@ -48,9 +48,10 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         <ModalCloseButton />
         <ModalBody
           style={{ position: "relative" }}
-          mx={[4, 4, 16]}
+          p={0}
+          mx={[4, 4, 12]}
           mt={[2, 2, 4]}
-          mb={[2, 2, 16]}
+          mb={[2, 2, 4]}
         >
           {renderFullPreview(item)}
         </ModalBody>
