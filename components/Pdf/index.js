@@ -4,10 +4,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import { Flex } from "@chakra-ui/react";
 
 export default function Pdf({ item }) {
-  // TODO centralize gateway stuff
-  const gateway = "https://metanivek.mypinata.cloud/ipfs/";
-  const uri = item.artifact_uri.replace("ipfs://", gateway);
-
   const [numPages, setNumPages] = useState(null);
 
   function onDocumentLoadSuccess({ numPages: nextNumPages }) {
@@ -22,7 +18,7 @@ export default function Pdf({ item }) {
           cMapPacked: true,
         }}
         onLoadSuccess={onDocumentLoadSuccess}
-        file={uri}
+        file={item.artifactUri}
       >
         {Array.from(new Array(numPages), (el, index) => (
           <Page key={`page_${index + 1}`} pageNumber={index + 1} />

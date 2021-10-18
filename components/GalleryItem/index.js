@@ -4,6 +4,7 @@ import {
   VStack,
   Box,
   Flex,
+  Spacer,
   useDisclosure,
   useBreakpointValue,
   useColorMode,
@@ -12,16 +13,6 @@ import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
 import CollectButton from "../CollectButton";
 
-function creatorIdToName(creatorId) {
-  if (creatorId === "tz1N3xSSHguSVLYMCeNG7e3oiDfPnc6FnQip") {
-    return "metanivek";
-  } else if (creatorId === "tz1aiCXusXLywm3ewXb4Y8X8bsDqWQYmzvLa") {
-    return "metanivek.words";
-  } else if (creatorId === "tz1XDQJPCP53mSgwDZiNphTVKGmDJRsTwWUe") {
-    return "metanivek.x";
-  }
-}
-
 export default function GalleryItem({ item }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const shouldShowModal = useBreakpointValue({ base: false, md: true });
@@ -29,40 +20,49 @@ export default function GalleryItem({ item }) {
   const showModal = () => {
     if (shouldShowModal) {
       onOpen();
+    } else {
     }
   };
+  const padding = [3, 3, 4, 4];
   return (
-    <GridItem
-      padding={[3, 3, 4, 4]}
-      boxShadow={colorMode === "light" ? "base" : "dark.base"}
-    >
-      <AspectRatio
-        ratio={1}
-        marginBottom={4}
-        style={{ cursor: "pointer" }}
-        onClick={showModal}
-      >
-        <Image item={item} objectFit="cover" />
-      </AspectRatio>
-      <VStack spacing={2} align="left">
-        <VStack align="left" mb={1} spacing={0}>
-          <Box fontSize="lg" noOfLines={1}>
-            {item.title}
-          </Box>
-          <Box fontSize="xs" color="gray.500">
-            {creatorIdToName(item.creator_id)}
-          </Box>
-        </VStack>
-        <Flex direction="column">
-          <CollectButton item={item} />
-          <GalleryItemModal
-            item={item}
-            isOpen={isOpen}
-            onOpen={onOpen}
-            onClose={onClose}
-          />
+    <GridItem boxShadow={colorMode === "light" ? "base" : "dark.base"}>
+      <Flex direction="column" height="100%">
+        <Flex direction="column" height="100%" p={padding}>
+          <Spacer />
+          <AspectRatio
+            ratio={item.aspectRatio}
+            style={{ cursor: "pointer" }}
+            onClick={showModal}
+          >
+            <Image item={item} objectFit="cover" />
+          </AspectRatio>
+          <Spacer />
         </Flex>
-      </VStack>
+        <Box
+          p={padding}
+          bgColor={colorMode === "light" ? "gray.neutral" : "gray.900"}
+          borderTopWidth="1px"
+          borderTopColor={colorMode === "light" ? "gray.100" : "gray.800"}
+        >
+          <VStack align="left" mb={3} spacing={0}>
+            <Box fontSize="lg" noOfLines={1}>
+              {item.title}
+            </Box>
+            <Box fontSize="xs" color="gray.500">
+              {item.creatorName}
+            </Box>
+          </VStack>
+          <Flex direction="column">
+            <CollectButton item={item} />
+          </Flex>
+        </Box>
+        <GalleryItemModal
+          item={item}
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+        />
+      </Flex>
     </GridItem>
   );
 }

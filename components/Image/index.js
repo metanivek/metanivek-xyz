@@ -1,27 +1,25 @@
 import Image from "next/image";
+import { isImage } from "../../lib/objkt";
 
 function imageUri(item, highQuality) {
-  let display = item.display_uri;
-  let artifact = item.artifact_uri;
+  let display = item.displayUri;
+  let artifact = item.artifactUri;
 
   let uri = artifact;
   if (!!display && !highQuality) {
     uri = display;
   }
-  // fast public gateway: "https://cf-ipfs.com/ipfs/"
-  const gateway = "https://metanivek.mypinata.cloud/ipfs/";
-  return uri.replace("ipfs://", gateway);
+  return uri;
 }
 
 function customLoader({ src }) {
   return src;
 }
 
-function isImage(item) {
-  return item.mime.startsWith("image/");
-}
-
 export default function MyImage({ item, objectFit, highQuality }) {
+  // HEN thumbnails look like crap so forcing high quality for now :(
+  // TODO: figure out a bandwidth friendly solution
+  highQuality = true;
   highQuality = (isImage(item) && highQuality) || false;
   return (
     <Image

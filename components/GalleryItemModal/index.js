@@ -14,19 +14,10 @@ import Image from "../Image";
 import Html from "../Html";
 import Pdf from "../Pdf";
 import Video from "../Video";
-
-function isHtmlObjkt(item) {
-  return item.mime === "application/x-directory";
-}
-function isPdf(item) {
-  return item.mime === "application/pdf";
-}
-function isVideo(item) {
-  return item.mime.startsWith("video/");
-}
+import { isHtml, isPdf, isVideo } from "../../lib/objkt";
 
 function renderFullPreview(item) {
-  if (isHtmlObjkt(item)) {
+  if (isHtml(item)) {
     return <Html item={item} />;
   } else if (isPdf(item)) {
     return <Pdf item={item} />;

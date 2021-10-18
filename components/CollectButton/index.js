@@ -9,14 +9,6 @@ import {
   Badge,
 } from "@chakra-ui/react";
 
-function externalItemUrl(item, destination) {
-  if (destination === "objkt") {
-    return `https://objkt.com/asset/hicetnunc/${item.id}`;
-  } else {
-    return `https://hicetnunc.xyz/objkt/${item.id}`;
-  }
-}
-
 const TezosIcon = (props) => (
   <Icon viewBox="0 0 1169.87 1593" {...props}>
     <path
@@ -27,8 +19,7 @@ const TezosIcon = (props) => (
 );
 
 export default function CollectButton({ item }) {
-  const collect = (dest) => () =>
-    window.open(externalItemUrl(item, dest), "_blank");
+  const collect = (dest) => () => window.open(item.uris[dest], "_blank");
   const soldOut = item.swaps.length <= 0;
   const isSecondary = !soldOut && item.swaps[0].creator_id != item.creator_id;
   let tag = "Primary";
