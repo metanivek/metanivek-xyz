@@ -17,9 +17,6 @@ function customLoader({ src }) {
 }
 
 export default function MyImage({ item, objectFit, highQuality }) {
-  // HEN thumbnails look like crap so forcing high quality for now :(
-  // TODO: figure out a bandwidth friendly solution
-  highQuality = true;
   highQuality = (isImage(item) && highQuality) || false;
   return (
     <Image

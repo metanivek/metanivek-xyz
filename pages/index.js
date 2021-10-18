@@ -34,7 +34,7 @@ export default function Home({ items }) {
       </Head>
       <Header />
       <Container maxWidth="100vw" padding={[4, 4, 4, 8]}>
-        <SimpleGrid spacing={6} columns={[1, 1, 3, 5]}>
+        <SimpleGrid spacing={6} columns={[1, 2, 4, 5]}>
           {items.map((item) => {
             return <GalleryItem key={item.id} item={item} />;
           })}
