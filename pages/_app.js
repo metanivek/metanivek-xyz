@@ -1,5 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+import Head from "next/head";
 
 const customTheme = extendTheme({
   config: { initialColorMode: "light", useSystemColorMode: true },
@@ -17,8 +18,13 @@ const customTheme = extendTheme({
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={customTheme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <Head>
+        <title>metanivek hic et nunc gallery</title>
+      </Head>
+      <ChakraProvider theme={customTheme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }

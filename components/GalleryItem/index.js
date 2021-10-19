@@ -3,6 +3,7 @@ import {
   AspectRatio,
   VStack,
   Box,
+  Heading,
   Flex,
   Spacer,
   useDisclosure,
@@ -45,9 +46,14 @@ export default function GalleryItem({ item }) {
           borderTopColor={colorMode === "light" ? "gray.100" : "gray.800"}
         >
           <VStack align="left" mb={3} spacing={0}>
-            <Box fontSize="lg" noOfLines={1}>
+            <Heading
+              fontSize="lg"
+              noOfLines={1}
+              fontWeight="500"
+              title={item.title}
+            >
               {item.title}
-            </Box>
+            </Heading>
             <Box fontSize="xs" color="gray.500">
               {item.creatorName}
             </Box>

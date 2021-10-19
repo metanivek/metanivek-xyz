@@ -16,6 +16,8 @@
     "@chakra-ui/theme": "^1.10.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@taquito/beacon-wallet": "^10.2.1",
+    "@taquito/taquito": "^10.2.1",
     "framer-motion": "^4.1.17",
     "graphql": "^15.6.1",
     "next": "11.0.1",
