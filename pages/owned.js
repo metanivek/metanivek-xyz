@@ -1,16 +1,8 @@
 import { VStack, Button, Text, Box } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Gallery from "../components/Gallery";
-
 import { useState, useEffect } from "react";
-
 import { fetchAllObjkts, filterOwnedObjkts } from "../lib/objkt";
-import {
-  activeAddress,
-  connectAccount,
-  disconnectAccount,
-  elidedAddress,
-} from "../lib/tezos";
 
 export async function getStaticProps() {
   return {
@@ -23,12 +15,20 @@ export async function getStaticProps() {
   };
 }
 
-export default function Owned({ items }) {
+function elidedAddress(address) {
+  return `${address.slice(0, 5)}…${address.slice(
+    address.length - 5,
+    address.length
+  )}`;
+}
+
+const Owned = ({ items }) => {
   const [address, setAddress] = useState(undefined);
   const [connecting, setConnecting] = useState(false);
   const [disconnecting, setDisconnecting] = useState(false);
   useEffect(() => {
     (async () => {
+      const { activeAddress } = await import("../lib/tezos");
       const addr = await activeAddress();
       if (addr) {
         setAddress(addr);
@@ -39,6 +39,7 @@ export default function Owned({ items }) {
   items = address ? filterOwnedObjkts(items, address) : [];
 
   const connect = async () => {
+    const { activeAddress, connectAccount } = await import("../lib/tezos");
     try {
       setConnecting(true);
       await connectAccount();
@@ -53,6 +54,7 @@ export default function Owned({ items }) {
     }
   };
   const disconnect = async () => {
+    const { disconnectAccount } = await import("../lib/tezos");
     try {
       setDisconnecting(true);
       await disconnectAccount();
@@ -99,4 +101,6 @@ export default function Owned({ items }) {
       )}
     </VStack>
   );
-}
+};
+
+export default Owned;
