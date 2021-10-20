@@ -68,7 +68,7 @@ const Owned = ({ items }) => {
     <VStack>
       <Header />
       {address && (
-        <VStack>
+        <VStack width="100%">
           <Button
             variant="outline"
             isLoading={disconnecting}

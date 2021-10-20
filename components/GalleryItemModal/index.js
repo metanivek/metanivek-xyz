@@ -30,7 +30,7 @@ function renderFullPreview(item) {
 
 export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
-  const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
+  // const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
   return (
     <Modal
       onClose={onClose}
@@ -51,8 +51,8 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
           }}
           p={0}
           mx={[4, 4, 12]}
-          mt={[2, 2, 4]}
-          mb={[2, 2, 4]}
+          mt={[4]}
+          mb={[1]}
         >
           {renderFullPreview(item)}
         </ModalBody>

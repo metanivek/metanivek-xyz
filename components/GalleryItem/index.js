@@ -7,7 +7,6 @@ import {
   Flex,
   Spacer,
   useDisclosure,
-  useBreakpointValue,
   useColorMode,
 } from "@chakra-ui/react";
 import Image from "../Image";
@@ -16,14 +15,8 @@ import CollectButton from "../CollectButton";
 
 export default function GalleryItem({ item, collectable }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const shouldShowModal = useBreakpointValue({ base: false, md: true });
   const { colorMode } = useColorMode();
-  const showModal = () => {
-    // if (shouldShowModal) {
-    onOpen();
-    // } else {
-    // }
-  };
+  const showModal = () => onOpen();
   const padding = [3, 3, 4, 4];
   return (
     <GridItem boxShadow={colorMode === "light" ? "base" : "dark.base"}>
@@ -58,7 +51,11 @@ export default function GalleryItem({ item, collectable }) {
               {item.creatorName}
             </Box>
           </VStack>
-          {collectable && <CollectButton item={item} mt={3} />}
+          {collectable && (
+            <Box mt={3}>
+              <CollectButton item={item} />
+            </Box>
+          )}
         </Box>
         <GalleryItemModal
           item={item}

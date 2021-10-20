@@ -11,7 +11,13 @@ export default function Pdf({ item }) {
   }
   // TODO: handle pagination
   return (
-    <Flex direction="column" align="center" justify="center" grow={1}>
+    <Flex
+      direction="column"
+      align="center"
+      justify="center"
+      grow={1}
+      overflowX={["hidden", "auto"]}
+    >
       <Document
         options={{
           cMapUrl: "cmaps/",
