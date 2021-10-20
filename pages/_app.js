@@ -4,6 +4,15 @@ import Head from "next/head";
 
 const customTheme = extendTheme({
   config: { initialColorMode: "light", useSystemColorMode: true },
+  components: {
+    Modal: {
+      baseStyle: {
+        dialogContainer: {
+          "@supports(height: -webkit-fill-available)": {},
+        },
+      },
+    },
+  },
   colors: {
     gray: {
       neutral: "#fafafa",

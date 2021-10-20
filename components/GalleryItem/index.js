@@ -19,10 +19,10 @@ export default function GalleryItem({ item }) {
   const shouldShowModal = useBreakpointValue({ base: false, md: true });
   const { colorMode } = useColorMode();
   const showModal = () => {
-    if (shouldShowModal) {
-      onOpen();
-    } else {
-    }
+    // if (shouldShowModal) {
+    onOpen();
+    // } else {
+    // }
   };
   const padding = [3, 3, 4, 4];
   return (
