@@ -14,7 +14,7 @@ import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
 import CollectButton from "../CollectButton";
 
-export default function GalleryItem({ item }) {
+export default function GalleryItem({ item, collectable }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const shouldShowModal = useBreakpointValue({ base: false, md: true });
   const { colorMode } = useColorMode();
@@ -45,7 +45,7 @@ export default function GalleryItem({ item }) {
           borderTopWidth="1px"
           borderTopColor={colorMode === "light" ? "gray.100" : "gray.800"}
         >
-          <VStack align="left" mb={3} spacing={0}>
+          <VStack align="left" spacing={0}>
             <Heading
               fontSize="lg"
               noOfLines={1}
@@ -58,9 +58,7 @@ export default function GalleryItem({ item }) {
               {item.creatorName}
             </Box>
           </VStack>
-          <Flex direction="column">
-            <CollectButton item={item} />
-          </Flex>
+          {collectable && <CollectButton item={item} mt={3} />}
         </Box>
         <GalleryItemModal
           item={item}

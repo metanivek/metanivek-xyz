@@ -59,9 +59,9 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         <ModalFooter>
           <Spacer />
           <Text>{item.title}</Text>
-          <Badge ml={2} variant="outline">
-            {totalRemaining}/{item.supply} available
-          </Badge>
+          {/* <Badge ml={2} variant="outline"> */}
+          {/*   {totalRemaining}/{item.supply} available */}
+          {/* </Badge> */}
           <Spacer />
         </ModalFooter>
       </ModalContent>

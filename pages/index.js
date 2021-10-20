@@ -1,8 +1,6 @@
-import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
-import GalleryItem from "../components/GalleryItem";
+import { VStack } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Gallery from "../components/Gallery";
-
 import { fetchAllObjkts } from "../lib/objkt";
 
 export async function getStaticProps() {
@@ -17,7 +15,7 @@ export default function Home({ items }) {
   return (
     <VStack>
       <Header />
-      <Gallery items={items} />
+      <Gallery items={items} collectable={true} />
     </VStack>
   );
 }

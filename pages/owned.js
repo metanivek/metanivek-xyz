@@ -81,6 +81,7 @@ const Owned = ({ items }) => {
           <Gallery
             items={items}
             empty="Hmm, you do not own any metanivek pieces. 👻"
+            collectable={false}
           />
         </VStack>
       )}
