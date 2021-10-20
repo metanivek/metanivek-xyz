@@ -96,7 +96,7 @@ const Owned = ({ items }) => {
             Connect Account
           </Button>
           <Text padding={[4, 4, 4, 8]}>
-            To view all metanivek pieces that you own.
+            Connect to view all metanivek pieces that you own. 🤝
           </Text>
         </VStack>
       )}
