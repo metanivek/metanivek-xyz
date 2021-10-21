@@ -1,21 +1,13 @@
 import { VStack } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Gallery from "../components/Gallery";
-import { fetchAllObjkts } from "../lib/objkt";
+import { fetchAllItemsHoc } from "../lib/pages";
 
-export async function getStaticProps() {
-  return {
-    props: {
-      items: await fetchAllObjkts(),
-    },
-  };
-}
-
-export default function Home({ items }) {
-  return (
-    <VStack>
-      <Header />
-      <Gallery items={items} collectable={true} />
-    </VStack>
-  );
-}
+const Home = ({ items }) => (
+  <VStack>
+    <Header />
+    <Gallery items={items} collectable={true} />
+  </VStack>
+);
+export default fetchAllItemsHoc(Home);
+export { getStaticProps } from "../lib/pages";

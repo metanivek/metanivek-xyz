@@ -2,18 +2,8 @@ import { VStack, Button, Text, Box } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Gallery from "../components/Gallery";
 import { useState, useEffect } from "react";
-import { fetchAllObjkts, filterOwnedObjkts } from "../lib/objkt";
-
-export async function getStaticProps() {
-  return {
-    props: {
-      // to have static props, just fetch all and filter later
-      // TODO probably a better way
-
-      items: await fetchAllObjkts(),
-    },
-  };
-}
+import { filterOwnedObjkts } from "../lib/objkt";
+import { fetchAllItemsHoc } from "../lib/pages";
 
 function elidedAddress(address) {
   return `${address.slice(0, 5)}…${address.slice(
@@ -104,4 +94,5 @@ const Owned = ({ items }) => {
   );
 };
 
-export default Owned;
+export default fetchAllItemsHoc(Owned);
+export { getStaticProps } from "../lib/pages";
