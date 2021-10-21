@@ -20,8 +20,9 @@ const TezosIcon = (props) => (
 
 export default function CollectButton({ item }) {
   const collect = (dest) => () => window.open(item.uris[dest], "_blank");
-  const soldOut = item.swaps.length <= 0;
-  const isSecondary = !soldOut && item.swaps[0].creator_id != item.creator_id;
+  const soldOut = item.listings.length <= 0;
+  const isSecondary =
+    !soldOut && item.listings[0].creator_id != item.creator_id;
   let tag = "Primary";
   let tagColor = "green";
   if (isSecondary) {
@@ -31,15 +32,16 @@ export default function CollectButton({ item }) {
     tag = "Sold Out";
     tagColor = "gray";
   }
-  const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
+  const totalRemaining = item.listings.reduce((m, s) => m + s.amount_left, 0);
   const collectTxt = soldOut ? (
     "Unavailable"
   ) : (
     <>
-      Collect for {item.swaps[0].price / 1000000}
+      Collect for {item.listings[0].price / 1000000}
       <TezosIcon />
     </>
   );
+  const availableOnHen = !soldOut && item.listings[0].t === "hen";
   return (
     <Flex direction="column">
       <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
@@ -56,9 +58,11 @@ export default function CollectButton({ item }) {
           {collectTxt}
         </MenuButton>
         <MenuList rounded="0px">
-          <MenuItem size="xs" onClick={collect("hen")}>
-            hic et nunc
-          </MenuItem>
+          {availableOnHen && (
+            <MenuItem size="xs" onClick={collect("hen")}>
+              hic et nunc
+            </MenuItem>
+          )}
           <MenuItem size="xs" onClick={collect("objkt")}>
             objkt.com
           </MenuItem>

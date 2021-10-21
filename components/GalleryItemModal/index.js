@@ -30,7 +30,7 @@ function renderFullPreview(item) {
 
 export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
-  // const totalRemaining = item.swaps.reduce((m, s) => m + s.remaining, 0);
+  // const totalRemaining = item.listings.reduce((m, s) => m + s.amount_left, 0);
   return (
     <Modal
       onClose={onClose}
