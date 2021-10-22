@@ -12,7 +12,7 @@ function elidedAddress(address) {
   )}`;
 }
 
-const Owned = ({ items }) => {
+const Yours = ({ items }) => {
   const [address, setAddress] = useState(undefined);
   const [connecting, setConnecting] = useState(false);
   const [disconnecting, setDisconnecting] = useState(false);
@@ -68,6 +68,13 @@ const Owned = ({ items }) => {
             Disconnect Account
           </Button>
           <Box fontSize="xs">{elidedAddress(address)}</Box>
+          {items.length > 0 && (
+            <Text padding={[4, 4, 4, 8]} textAlign="center">
+              You own {items.length} metanivek{" "}
+              {items.length > 1 ? "pieces" : "piece"}. Thank you. I appreciate
+              your support! 💛
+            </Text>
+          )}
           <Gallery
             items={items}
             empty="Hmm, you do not own any metanivek pieces. 👻"
@@ -94,5 +101,5 @@ const Owned = ({ items }) => {
   );
 };
 
-export default fetchAllItemsHoc(Owned);
+export default fetchAllItemsHoc(Yours);
 export { getStaticProps } from "../lib/pages";

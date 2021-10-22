@@ -20,20 +20,16 @@ const TezosIcon = (props) => (
 
 export default function CollectButton({ item }) {
   const collect = (dest) => () => window.open(item.uris[dest], "_blank");
-  const soldOut = item.listings.length <= 0;
-  const isSecondary =
-    !soldOut && item.listings[0].creator_id != item.creator_id;
   let tag = "Primary";
   let tagColor = "green";
-  if (isSecondary) {
+  if (item.secondary) {
     tag = "Secondary";
     tagColor = "blue";
-  } else if (soldOut) {
+  } else if (item.soldOut) {
     tag = "Sold Out";
     tagColor = "gray";
   }
-  const totalRemaining = item.listings.reduce((m, s) => m + s.amount_left, 0);
-  const collectTxt = soldOut ? (
+  const collectTxt = item.soldOut ? (
     "Unavailable"
   ) : (
     <>
@@ -41,7 +37,7 @@ export default function CollectButton({ item }) {
       <TezosIcon />
     </>
   );
-  const availableOnHen = !soldOut && item.listings[0].t === "hen";
+  const availableOnHen = !item.soldOut && item.listings[0].t === "hen";
   return (
     <Flex direction="column">
       <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
@@ -52,8 +48,8 @@ export default function CollectButton({ item }) {
           fontWeight="normal"
           colorScheme="gray"
           variant="outline"
-          disabled={soldOut}
-          title={`${totalRemaining}/${item.supply} editions are available`}
+          disabled={item.soldOut}
+          title={`${item.totalRemaining}/${item.supply} editions are available`}
         >
           {collectTxt}
         </MenuButton>

@@ -8,6 +8,7 @@ import {
   Spacer,
   useDisclosure,
   useColorMode,
+  Link,
 } from "@chakra-ui/react";
 import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
@@ -45,11 +46,19 @@ export default function GalleryItem({ item, collectable }) {
               fontWeight="500"
               title={item.title}
             >
-              {item.title}
+              <Link href={`https://hicetnunc.xyz/objkt/${item.id}`}>
+                {item.title}
+              </Link>
             </Heading>
-            <Box fontSize="xs" color="gray.500">
-              {item.creatorName}
-            </Box>
+            <Flex fontSize="xs" color="gray.500" direction="row">
+              <Box>
+                <Link href={`https://hicetnunc.xyz/${item.creatorName}`}>
+                  {item.creatorName}
+                </Link>
+              </Box>
+              <Spacer />
+              {item.tags.length > 0 && <Box>#{item.tags[0]}</Box>}
+            </Flex>
           </VStack>
           {collectable && (
             <Box mt={3}>

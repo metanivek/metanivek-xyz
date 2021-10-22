@@ -6,9 +6,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Badge,
+  Link,
   Spacer,
-  Text,
 } from "@chakra-ui/react";
 import Image from "../Image";
 import Html from "../Html";
@@ -30,7 +29,6 @@ function renderFullPreview(item) {
 
 export default function GalleryItemModal({ item, isOpen, onClose }) {
   const size = "full";
-  // const totalRemaining = item.listings.reduce((m, s) => m + s.amount_left, 0);
   return (
     <Modal
       onClose={onClose}
@@ -58,10 +56,9 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         </ModalBody>
         <ModalFooter>
           <Spacer />
-          <Text>{item.title}</Text>
-          {/* <Badge ml={2} variant="outline"> */}
-          {/*   {totalRemaining}/{item.supply} available */}
-          {/* </Badge> */}
+          <Link href={`https://hicetnunc.xyz/objkt/${item.id}`}>
+            {item.title}
+          </Link>
           <Spacer />
         </ModalFooter>
       </ModalContent>

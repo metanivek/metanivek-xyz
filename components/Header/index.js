@@ -13,7 +13,8 @@ export default function Header() {
         <Divider />
         <HStack spacing={6} pt={2}>
           <SiteLink href="/">All</SiteLink>
-          <SiteLink href="/owned">Owned</SiteLink>
+          <SiteLink href="/listed">Listed</SiteLink>
+          <SiteLink href="/yours">Yours</SiteLink>
         </HStack>
       </VStack>
     </Center>
