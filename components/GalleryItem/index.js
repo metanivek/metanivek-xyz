@@ -46,9 +46,7 @@ export default function GalleryItem({ item, collectable }) {
               fontWeight="500"
               title={item.title}
             >
-              <Link href={`https://hicetnunc.xyz/objkt/${item.id}`}>
-                {item.title}
-              </Link>
+              <Link href={item.uris.hen}>{item.title}</Link>
             </Heading>
             <Flex fontSize="xs" color="gray.500" direction="row">
               <Box>

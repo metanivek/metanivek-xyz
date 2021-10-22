@@ -56,9 +56,7 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         </ModalBody>
         <ModalFooter>
           <Spacer />
-          <Link href={`https://hicetnunc.xyz/objkt/${item.id}`}>
-            {item.title}
-          </Link>
+          <Link href={item.uris.hen}>{item.title}</Link>
           <Spacer />
         </ModalFooter>
       </ModalContent>
