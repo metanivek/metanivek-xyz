@@ -8,6 +8,7 @@ const customTheme = extendTheme({
     Modal: {
       baseStyle: {
         dialogContainer: {
+          //  work around mobile safari bug https://github.com/chakra-ui/chakra-ui/issues/4680
           "@supports(height: -webkit-fill-available)": {},
         },
       },

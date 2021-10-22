@@ -1,6 +1,10 @@
 import { Center, Link, VStack, Text, HStack, Divider } from "@chakra-ui/react";
 import SiteLink from "../SiteLink";
 
+function HeaderLink(props) {
+  return <SiteLink boldCurrent {...props} />;
+}
+
 export default function Header() {
   return (
     <Center m={4}>
@@ -12,9 +16,9 @@ export default function Header() {
         </Text>
         <Divider />
         <HStack spacing={6} pt={2}>
-          <SiteLink href="/">All</SiteLink>
-          <SiteLink href="/listed">Listed</SiteLink>
-          <SiteLink href="/yours">Yours</SiteLink>
+          <HeaderLink href="/">All</HeaderLink>
+          <HeaderLink href="/listed">Listed</HeaderLink>
+          <HeaderLink href="/yours">Yours</HeaderLink>
         </HStack>
       </VStack>
     </Center>
