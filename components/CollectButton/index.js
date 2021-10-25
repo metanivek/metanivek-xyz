@@ -22,22 +22,32 @@ export default function CollectButton({ item }) {
   const collect = (dest) => () => window.open(item.uris[dest], "_blank");
   let tag = "Primary";
   let tagColor = "green";
+  let disabled = false;
   if (item.secondary) {
     tag = "Secondary";
     tagColor = "blue";
+  } else if (item.ownerOnlyHolder) {
+    tag = "Unlisted";
+    tagColor = "gray";
   } else if (item.soldOut) {
     tag = "Sold Out";
     tagColor = "gray";
+    disabled = true;
   }
   const collectTxt = item.soldOut ? (
-    "Unavailable"
+    item.ownerOnlyHolder ? (
+      "Make Offer"
+    ) : (
+      "Unavailable"
+    )
   ) : (
     <>
       Collect for {item.listings[0].price / 1000000}
       <TezosIcon />
     </>
   );
-  const availableOnHen = !item.soldOut && item.listings[0].t === "hen";
+  const availableOnHen =
+    !item.soldOut && !item.ownerOnlyHolder && item.listings[0].t === "hen";
   return (
     <Flex direction="column">
       <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
@@ -48,7 +58,7 @@ export default function CollectButton({ item }) {
           fontWeight="normal"
           colorScheme="gray"
           variant="outline"
-          disabled={item.soldOut}
+          disabled={disabled}
           title={`${item.totalRemaining}/${item.supply} editions are available`}
         >
           {collectTxt}
