@@ -10,11 +10,13 @@ import {
   useColorMode,
   Link,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import Image from "../Image";
 import GalleryItemModal from "../GalleryItemModal";
 import CollectButton from "../CollectButton";
 
 export default function GalleryItem({ item, collectable }) {
+  const [aspectRatio, setAspectRatio] = useState(1 / 1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
   const showModal = () => onOpen();
@@ -25,11 +27,17 @@ export default function GalleryItem({ item, collectable }) {
         <Flex direction="column" height="100%" p={padding}>
           <Spacer />
           <AspectRatio
-            ratio={item.aspectRatio}
+            ratio={aspectRatio}
             style={{ cursor: "pointer" }}
             onClick={showModal}
           >
-            <Image item={item} objectFit="cover" />
+            <Image
+              item={item}
+              objectFit="cover"
+              onLoadingComplete={(i) =>
+                setAspectRatio(i.naturalWidth / i.naturalHeight)
+              }
+            />
           </AspectRatio>
           <Spacer />
         </Flex>

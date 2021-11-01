@@ -16,7 +16,12 @@ function customLoader({ src }) {
   return src;
 }
 
-export default function MyImage({ item, objectFit, highQuality }) {
+export default function MyImage({
+  item,
+  objectFit,
+  highQuality,
+  onLoadingComplete,
+}) {
   highQuality = (isImage(item) && highQuality) || false;
   return (
     <Image
@@ -28,6 +33,7 @@ export default function MyImage({ item, objectFit, highQuality }) {
       alt={item.title}
       unoptimized={true}
       loader={customLoader}
+      onLoadingComplete={onLoadingComplete}
     />
   );
 }
