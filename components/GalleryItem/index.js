@@ -54,10 +54,11 @@ export default function GalleryItem({ item, collectable }) {
               fontWeight="500"
               title={item.title}
             >
-              <Link href={item.uris.hen}>{item.title}</Link>
+              {item.title}
             </Heading>
             <Flex fontSize="xs" color="gray.500" direction="row">
               <Box>
+                <Link href={item.uris.hen}>#{item.id}</Link> &middot;{" "}
                 <Link href={`https://hicetnunc.xyz/${item.creatorName}`}>
                   {item.creatorName}
                 </Link>
