@@ -6,8 +6,11 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Heading,
   Link,
   Spacer,
+  VStack,
+  Box,
 } from "@chakra-ui/react";
 import Image from "../Image";
 import Html from "../Html";
@@ -54,9 +57,24 @@ export default function GalleryItemModal({ item, isOpen, onClose }) {
         >
           {renderFullPreview(item)}
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter p={3}>
           <Spacer />
-          <Link href={item.uris.hen}>{item.title}</Link>
+          <VStack spacing={0}>
+            <Heading
+              fontSize="lg"
+              noOfLines={1}
+              fontWeight="500"
+              title={item.title}
+            >
+              {item.title}
+            </Heading>
+            <Box fontSize="xs" color="gray.500">
+              <Link href={item.uris.hen}>#{item.id}</Link> &middot;{" "}
+              <Link href={`https://hicetnunc.xyz/${item.creatorName}`}>
+                {item.creatorName}
+              </Link>
+            </Box>
+          </VStack>
           <Spacer />
         </ModalFooter>
       </ModalContent>
