@@ -46,6 +46,7 @@ export default function CollectButton({ item }) {
       <TezosIcon />
     </>
   );
+  // only show hic et nunc option if it is the lowest price listing
   const availableOnHen =
     !item.soldOut && !item.ownerOnlyHolder && item.listings[0].t === "hen";
   return (
