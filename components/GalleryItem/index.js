@@ -62,6 +62,7 @@ export default function GalleryItem({ item, collectable }) {
                 <Link href={`https://hicetnunc.xyz/${item.creatorName}`}>
                   {item.creatorName}
                 </Link>
+                {item.supply === 1 && <span> &middot; 1/1</span>}
               </Box>
               <Spacer />
               {item.tags.length > 0 && <Box>#{item.tags[0]}</Box>}

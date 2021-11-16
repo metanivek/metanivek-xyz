@@ -46,35 +46,52 @@ export default function CollectButton({ item }) {
       <TezosIcon />
     </>
   );
+  const title = `${item.totalRemaining}/${item.supply} editions are available`;
   // only show hic et nunc option if it is the lowest price listing
   const availableOnHen =
     !item.soldOut && !item.ownerOnlyHolder && item.listings[0].t === "hen";
   return (
     <Flex direction="column">
-      <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
-        <MenuButton
-          as={Button}
+      {availableOnHen && (
+        <Menu matchWidth={true} offset={{ mainAxis: 0 }}>
+          <MenuButton
+            as={Button}
+            fontSize="md"
+            rounded="0px"
+            fontWeight="normal"
+            colorScheme="gray"
+            variant="outline"
+            disabled={disabled}
+            title={title}
+          >
+            {collectTxt}
+          </MenuButton>
+          <MenuList rounded="0px">
+            {availableOnHen && (
+              <MenuItem size="xs" onClick={collect("hen")}>
+                hic et nunc
+              </MenuItem>
+            )}
+            <MenuItem size="xs" onClick={collect("objkt")}>
+              objkt.com
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      )}
+      {!availableOnHen && (
+        <Button
           fontSize="md"
           rounded="0px"
           fontWeight="normal"
           colorScheme="gray"
           variant="outline"
           disabled={disabled}
-          title={`${item.totalRemaining}/${item.supply} editions are available`}
+          onClick={collect("objkt")}
+          title={title}
         >
           {collectTxt}
-        </MenuButton>
-        <MenuList rounded="0px">
-          {availableOnHen && (
-            <MenuItem size="xs" onClick={collect("hen")}>
-              hic et nunc
-            </MenuItem>
-          )}
-          <MenuItem size="xs" onClick={collect("objkt")}>
-            objkt.com
-          </MenuItem>
-        </MenuList>
-      </Menu>
+        </Button>
+      )}
       <Badge textAlign="center" colorScheme={tagColor}>
         {tag}
       </Badge>

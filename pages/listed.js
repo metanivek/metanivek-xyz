@@ -1,32 +1,38 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Gallery from "../components/Gallery";
 import { fetchAllItemsHoc } from "../lib/pages";
-import { filterListedObjkts, primaryCount, secondaryCount } from "../lib/objkt";
-
-const pluralize = function (number, singular, plural) {
-  return `${number} ${number > 1 ? singular : plural}`;
-};
+import {
+  filterListedObjkts,
+  filterSecondary,
+  filterPrimary,
+} from "../lib/objkt";
 
 const Listed = ({ items }) => {
   items = filterListedObjkts(items);
-  const primary = primaryCount(items);
-  const secondary = secondaryCount(items);
+  const primary = filterPrimary(items);
+  const secondary = filterSecondary(items);
+
   return (
-    <VStack>
+    <Box>
       <Header />
-      {items.length > 0 && (
-        <Text padding={[4, 4, 4, 8]} textAlign="center">
-          There are currently {pluralize(primary, "piece", "pieces")} on primary
-          and {pluralize(secondary, "piece", "pieces")} on secondary markets.
-        </Text>
-      )}
+      <Heading mt={16} mb={4} size="md">
+        Primary &middot; {primary.length}
+      </Heading>
       <Gallery
-        items={items}
+        items={primary}
         collectable={true}
-        empty="No pieces are currently available to collect."
+        empty="No pieces are currently available on primary to collect."
       />
-    </VStack>
+      <Heading mt={16} mb={4} size="md">
+        Secondary &middot; {secondary.length}
+      </Heading>
+      <Gallery
+        items={secondary}
+        collectable={true}
+        empty="No pieces are currently available on secondary to collect."
+      />
+    </Box>
   );
 };
 export default fetchAllItemsHoc(Listed);
