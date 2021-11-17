@@ -10,7 +10,7 @@ export default function Header() {
     <Center m={4}>
       <VStack>
         <Text align="center" pb={2}>
-          experimental h=n gallery
+          experimental objkt gallery
           <br /> by <Link href="https://twitter.com/metanivek">@metanivek</Link>
           <br />
           <Link color="blue" href="https://github.com/metanivek/metanivek-xyz">
